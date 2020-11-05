@@ -20,13 +20,12 @@ class Controller extends BaseController
           Storage::makeDirectory('/public/servicios', 0775, true); //creates directory
       }
       if(!Storage::exists('/public/servicios-300')) {
-          Storage::makeDirectory('/public/servicios-300', 0775, true); //creates directory 
+          Storage::makeDirectory('/public/servicios-300', 0775, true); //creates directory
       }
     }
     public function crearImagenReducida($request, $nombreImagen)
     {
       $this->validarCarpetaImagenes();
-      $image = $request->file('image');
       $image_resize = Image::make( $request->file('imagen') );
       $image_resize->fit(100, 100);
       $image_resize->save(public_path('storage/servicios-300/' . $nombreImagen));
@@ -34,7 +33,6 @@ class Controller extends BaseController
     public function crearImagenNormal($request, $nombreImagen)
     {
       $this->validarCarpetaImagenes();
-      $image = $request->file('image');
       $image_resize = Image::make( $request->file('imagen') );
       $image_resize->fit(500, 500);
       $image_resize->save(public_path('storage/servicios/' . $nombreImagen));
